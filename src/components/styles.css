@@ -1,0 +1,48 @@
+*
+{
+    box-sizing: border-box;
+    margin: 0 0;
+    padding: 0 0;
+    font-family: 'Montserrat', sans-serif;
+}
+body
+{
+    min-height: 100vh;
+}
+.heading{
+    margin: 0 0;
+    padding-left: 2rem;
+    min-width: 100%;
+    background-color:#f5ba14;
+    color: #ffffff;
+    min-height: 10vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    filter: drop-shadow(0px 2px 10px rgba(105, 105, 105,0.5));
+}
+.note h1
+{
+    margin-bottom: 0.5rem
+}
+
+.note
+{
+    margin-left: 2rem;
+    margin-top: 2rem;
+    padding: 1rem 1rem;
+    min-height: 20vh;
+    max-width: 300px;
+    background-color: #ffffff;
+    filter: drop-shadow(1px 1px 10px rgba(105, 105, 105,0.5));
+    border-radius: 10px;
+}
+
+.footer
+{
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.5;
+}
