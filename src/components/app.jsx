@@ -1,14 +1,21 @@
-import React from "react"
-import Header from "./header"
-import Note from "./note"
-import Footer from "./footer"
+import React from "react";
+import Header from "./header";
+import Note from "./note";
+import Footer from "./footer";
+import notes from "../notes";
+import Container from "./container";
 function App() {
-    return (<div>
-        <Header />
-        <Note title="Wash Dishes" desc="Wash dishes at 7:00 in the evening"/>
-        <Note title="Study" desc="Study at 8:00 in the evening"/>
-        <Footer />
-    </div>);
+  return (
+    <div>
+      <Header />
+      <Container>
+        {notes.map((note) => (
+          <Note key={note.key} title={note.title} desc={note.content} />
+        ))}
+      </Container>
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
