@@ -1,12 +1,14 @@
-import React from "react"
-import './styles.css'
+import React from "react";
+import { Col , Container } from "react-bootstrap";
 function Note(props) {
-    return (
-        <div className="note col-lg-3">
-            <h1>{props.title}</h1>
-            <p>{props.desc}</p>
-        </div>
-    );
+  return (
+    <Col lg={"4"}>
+      <Container className="note">
+        <h1>{props.title}</h1>
+        <p>{props.desc}</p>
+      </Container>
+    </Col>
+  );
 }
 
-export default Note
+export default Note;
