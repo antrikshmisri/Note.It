@@ -26,3 +26,6 @@ auto-scripts
 .idea
 __pycache__
 .git
+package-lock.json
+yarn.lock
+.eslintcache
