@@ -1,20 +1,25 @@
 import React from "react";
-import Header from "./header";
-import Note from "./note";
-import Footer from "./footer";
-import notes from "../notes";
-import Container from "./container";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Landing from "../routes/Landing";
+import Home from "../routes/Home";
+import initFontAwesome from "./FaLibrary";
+import { AuthProvider } from "../contexts/AuthContext";
+
+initFontAwesome();
+
 function App() {
   return (
-    <div>
-      <Header />
-      <Container>
-        {notes.map((note) => (
-          <Note key={note.key} title={note.title} desc={note.content} />
-        ))}
-      </Container>
-      <Footer />
-    </div>
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <Route path="/home" component={Home} />
+          </Switch>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 
