@@ -22,11 +22,16 @@ body
     align-items: center;
     filter: drop-shadow(0px 2px 10px rgba(105, 105, 105,0.5));
 }
-.note h1
+.note-title
 {
+    padding: 1rem 1rem;
+    background-color: rgba(193, 86, 75, 1);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 0;
     margin-bottom: 0.5rem;
+    border-bottom: 2px solid #f5ba14;
 }
-
 .note
 {
     margin: 1rem 0;
@@ -64,20 +69,27 @@ body
     width: 50px;
     height: 50px;
     border-radius: 50% !important;
-    background-color: rgba(105, 105, 105,0.8) !important;
+    background-color: rgba(193, 86, 75, 0.8) !important;
     border: none !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
 }
 .add-btn:hover
 {
-    background-color: rgba(105, 105, 105,1) !important;
+    background-color: rgba(193, 86, 75, 1) !important;
 }
 
 h1.title
 {
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: 700;
+    font-family: 'Indie Flower', cursive;
 }
-
+h1.header
+{
+    font-family: 'Indie Flower', cursive;
+}
 .landing-container
 {
     background-color: #f5ba14;
@@ -104,18 +116,25 @@ h1.title
     margin: 1rem 0rem;
     min-width: 100px;
     filter: drop-shadow(1px 1px 10px rgba(105, 105, 105,0.5));
+    font-family: 'Indie Flower', cursive;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .center button:hover
 {
-    filter: drop-shadow(1px 1px 10px rgba(105, 105, 105, 1));
-    background-color: rgba(105, 105, 105, 1);
+    filter: drop-shadow(1px 1px 10px rgba(193, 86, 75, 1));
+    background-color: rgba(193, 86, 75, 1);
     color: #ffffff;
 }
 
 .title-div
 {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .line
@@ -130,11 +149,15 @@ h1.title
 {
     max-height: 150px;
     max-width: 150px;
-    position: absolute;
+    /* position: absolute;
     top: 80px;
-    right: 50%;
-    transform: translateX(50%);
+    right: 50%; */
     filter: drop-shadow(1px 1px 10px rgba(105, 105, 105,0.5));
+}
+
+.svg.xl
+{
+    min-width: 250px;
 }
 
 img.profile-pic
@@ -145,7 +168,6 @@ img.profile-pic
     filter: drop-shadow(1px 1px 10px rgba(105, 105, 105,0.5));
     border: 2px solid #ffffff
 }
-
 
 .links
 {
@@ -165,6 +187,14 @@ img.profile-pic
     align-items: center;
     justify-content: space-around;
 }
+.user-info .name p
+{
+    font-size: 1.05rem;
+    color: #ffffff !important;
+    font-weight: 700;
+    font-family: 'Indie Flower', cursive !important;
+    border-bottom: 2px solid rgba(193, 86, 75, 1);
+}
 .profile-pic-div
 {
     display: flex;
@@ -177,6 +207,55 @@ img.profile-pic
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.debug-box
+{
+    border: 2px solid red;
+}
+form 
+{
+  min-width: 100%;
+}
+.inputs
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+input, textarea
+{
+  background-color: #ffffff;
+  border: none;
+  border-bottom: 3px solid rgba(193, 86, 75, 0.8);
+  padding: 5px 5px;
+  border-radius: 8px;
+  filter: drop-shadow(0px 4px 15px rgba(33, 37, 41,0.25));
+  outline: none;
+  font-family: 'Indie Flower', cursive !important;
+}
+button
+{
+    transition: 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
+    background-color: #ffffff;
+    color: rgba(105, 105, 105, 1);
+    font-weight: 700;
+    border: none;
+    filter: drop-shadow(1px 1px 10px rgba(105, 105, 105,0.5));
+    font-family: 'Indie Flower', cursive !important;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+button:hover
+{
+    filter: drop-shadow(1px 2px 10px rgba(105, 105, 105, 1));
+    background-color: rgba(193, 86, 75, 1);
+    color: #ffffff;
+}
+textarea
+{
+    min-height: 150px;
 }
 @media (max-width: 1000px)
 {
