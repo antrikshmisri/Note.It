@@ -1,17 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import line from "../assets/imgs/line.svg";
-import note from "../assets/imgs/note.svg";
 import { useHistory } from "react-router-dom";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { signInWithGoogle } from "../firebase";
-import { AuthContext } from "../contexts/AuthContext";
+
+import note from "../assets/imgs/note.svg";
+import line from "../assets/imgs/line.svg";
+
+import { auth, googleProvider } from "../firebase";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setUser,
+  selectUser,
+} from "../features/userSlice";
 
 export default function Landing() {
   const [redirect, setRedirect] = useState(null);
-  const user = useContext(AuthContext);
-  const history = useHistory()
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const history = useHistory();
 
   useEffect(() => {
     if (user) {
@@ -20,26 +28,42 @@ export default function Landing() {
   }, [user]);
 
   if (redirect) {
-    history.push(redirect)
+    history.push(redirect);
   }
 
   const goToLink = (link) => {
     window.location.href = link;
   };
+
+  const handleSignIn = () => {
+    auth.signInWithPopup(googleProvider).then((res) => {
+      dispatch(
+        setUser({
+          name: res.user.displayName,
+          email: res.user.email,
+          image: res.user.photoURL,
+        })
+      );
+    });
+  };
   return (
     <>
       <Container fluid className="landing-container">
         <Row>
-          <img className="svg" src={note} alt="note" />
-          <Col lg={"12"} className="text-center mb-5 title-div">
-            <h1 className="title">KEEPER - JS</h1>
-            <img className="line" src={line} alt="line" />
+          <Col lg={"12"} className="text-center mb-3">
+            <img className="svg" src={note} alt="note" />
           </Col>
-          <Col lg={"12"} className="center">
-            <Container className="center">
+          <Col lg={"12"} className="text-center title-div">
+            <h1 className="title">NOTE.IT</h1>
+          </Col>
+          <Col lg={"12"} className="text-center title-div">
+            <img className="svg xl" src={line} alt="note" />
+          </Col>
+          <Col lg={"12"} className="center mt-5">
+            <Container className="center btns">
               <Row>
                 <Col lg={"6"} className="center">
-                  <Button onClick={signInWithGoogle}>
+                  <Button onClick={handleSignIn}>
                     <FontAwesomeIcon icon={["fab", "google"]} /> Sign-In
                   </Button>
                 </Col>

@@ -1,34 +1,36 @@
-import React, { useEffect, useContext, useState } from "react";
-import Header from "../components/header";
-import Note from "../components/note";
+import React from "react";
+import Header from "../components/Header";
+import Note from "../components/Note";
 import swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import notes from "../notes";
 import { Button } from "react-bootstrap";
-import { AuthContext } from "../contexts/AuthContext";
-import { Redirect, useHistory } from "react-router-dom";
+import messages from "../constants/messages";
+import useArray from "../hooks/useArray";
+
+const reactSwal = withReactContent(swal);
 
 export default function Home() {
-  const [title, setTitle] = useState("");
-  const [redirect, setRedirect] = useState(null);
-  const user = useContext(AuthContext);
-  const history = useHistory()
+  const [notesArray, setNotesArray] = useArray(notes);
 
-  useEffect(() => {
-    if (!user) {
-      setRedirect("/");
-    }
-  }, [user]);
-  if (redirect) {
-    history.push(redirect)
-  }
   const handleClick = (event) => {
-    setTitle("This is title");
-    swal.fire({
-      title: { title },
-      text: "Enter the note details",
-      confirmButtonText: "Add",
+    reactSwal.fire(messages.noteinfo).then(res => {
+      const [title, body] = res.value
+      if(title){
+        const note = {
+          key: notes.length+1,
+          title: title,
+          desc: body
+        }
+        setNotesArray(note, notesArray.length)
+      }
+      else{
+        reactSwal.fire(messages.nullinfo)
+      }
+    }).catch(err => {
+      console.log(err)
     });
   };
   return (
@@ -36,7 +38,7 @@ export default function Home() {
       <Header />
       <Container fluid>
         <Row>
-          {notes.map((note) => (
+          {notesArray.map((note) => (
             <Note key={note.key} title={note.title} desc={note.content} />
           ))}
           <Col lg={"3"}>
