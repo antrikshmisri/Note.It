@@ -12,20 +12,7 @@ firebase.initializeApp({
 })
 
 
-
-
-export const auth = firebase.auth()
-
+const auth = firebase.auth()
 const googleProvider = new firebase.auth.GoogleAuthProvider()
 
-export const signInWithGoogle = () => {
-    auth.signInWithPopup(googleProvider)
-    .then(res => {console.log(res.user)})
-    .catch(err => {console.log(err.message)})
-}
-
-export const signOut = () => {
-    auth.signOut()
-    .then(console.log('Logged Out'))
-    .catch(err => {console.log(err.message)})
-}
+export {auth, googleProvider}
