@@ -1,38 +1,63 @@
-import React from "react";
-import Header from "../components/Header";
-import Note from "../components/Note";
+import React, { useState } from "react";
+
 import swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import notes from "../notes";
-import { Button } from "react-bootstrap";
 import messages from "../constants/messages";
 import useArray from "../hooks/useArray";
+import Header from "../components/Header";
+import Note from "../components/Note";
+import { Canvas } from "../components/Canvas";
+import { CanvasProvider } from "../contexts/CanvasContext";
 
 const reactSwal = withReactContent(swal);
 
 export default function Home() {
   const [notesArray, setNotesArray] = useArray(notes);
+  const [subButtonVisibility, setSubButtonVisibility] = useState(false);
 
-  const handleClick = (event) => {
-    reactSwal.fire(messages.noteinfo).then(res => {
-      const [title, body] = res.value
-      if(title){
-        const note = {
-          key: notes.length+1,
-          title: title,
-          desc: body
+  const handleTextNoteClick = (event) => {
+    reactSwal
+      .fire(messages.noteinfo)
+      .then((res) => {
+        const [title, body] = res.value;
+        if (title) {
+          const note = {
+            key: notes.length + 1,
+            title: title,
+            desc: body,
+          };
+          setNotesArray(note, notesArray.length);
+        } else {
+          reactSwal.fire(messages.nullinfo);
         }
-        setNotesArray(note, notesArray.length)
-      }
-      else{
-        reactSwal.fire(messages.nullinfo)
-      }
-    }).catch(err => {
-      console.log(err)
-    });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
+  const handleDoodleNoteClick = (event) => {
+    reactSwal
+      .fire({
+        confirmButtonText: "Add",
+        showCancelButton: true,
+        cancelButtonText: "Cancel",
+        customClass: "doodle-modal",
+        html: (
+          <CanvasProvider>
+            <Canvas />
+          </CanvasProvider>
+        ),
+      })
+      .then((res) => {
+        console.log("worked");
+      });
+  };
+
   return (
     <>
       <Header />
@@ -41,11 +66,30 @@ export default function Home() {
           {notesArray.map((note) => (
             <Note key={note.key} title={note.title} desc={note.content} />
           ))}
-          <Col lg={"3"}>
-            <Container className="btn-container">
-              <Button className="add-btn" onClick={handleClick}>
-                <span>+</span>
-              </Button>
+          <Col lg={"4"} className="btn-container p-0">
+            <Container className="d-flex align-items-center" fluid>
+              <Row>
+                <Col lg={"3"}>
+                  <Button
+                    className="add-btn"
+                    onClick={() => {
+                      setSubButtonVisibility(!subButtonVisibility);
+                    }}
+                  >
+                    <span>+</span>
+                  </Button>
+                </Col>
+                {subButtonVisibility ? (
+                  <Col lg={"9"} className="d-flex align-items-center">
+                    <Button className="sub-btn" onClick={handleTextNoteClick}>
+                      <span>Text</span>
+                    </Button>
+                    <Button className="sub-btn" onClick={handleDoodleNoteClick}>
+                      <span>Doodle</span>
+                    </Button>
+                  </Col>
+                ) : null}
+              </Row>
             </Container>
           </Col>
         </Row>
