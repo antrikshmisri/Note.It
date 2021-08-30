@@ -59,11 +59,12 @@ body
     padding: 1rem 1rem;
     max-width: 300px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
 }
 
-.add-btn
+.add-btn, .edit-btn
 {
+    transition: 1s cubic-bezier(0.165, 0.84, 0.44, 1);
     font-weight: 700 !important;
     font-size: 1.5rem !important;
     width: 50px;
@@ -75,11 +76,17 @@ body
     justify-content: center;
     align-items: center;
 }
-.add-btn:hover
+.add-btn:hover, .edit-btn:hover
 {
     background-color: rgba(193, 86, 75, 1) !important;
 }
-
+.edit-btn
+{
+    border-bottom-right-radius: 10px !important;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
 h1.title
 {
     font-size: 4.5rem;
@@ -173,7 +180,7 @@ img.profile-pic
 {
     padding: 0.5rem 0.5rem;
     right: 0;
-    width: 20% !important;
+    max-width: 200px !important;
     display: flex;
     justify-content: space-around;
     position: absolute !important;
@@ -233,6 +240,7 @@ input, textarea
   filter: drop-shadow(0px 4px 15px rgba(33, 37, 41,0.25));
   outline: none;
   font-family: 'Indie Flower', cursive !important;
+  min-width: 100%;
 }
 button
 {
@@ -253,9 +261,53 @@ button:hover
     background-color: rgba(193, 86, 75, 1);
     color: #ffffff;
 }
+.sub-btn
+{
+    transition: 0.75s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background-color: rgba(193, 86, 75, 0.8) !important;
+    border: none !important;
+    animation: fadeIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-height: 38px;
+}
+
 textarea
 {
-    min-height: 150px;
+    min-height: 300px;
+}
+.doodle-modal
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.canvas
+{
+    border: 8px solid rgba(193, 86, 75, 0.8) !important;
+    border-radius: 10px;
+    width: 400px;
+    height: 400px;
+}
+@keyframes fadeIn
+{
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes fadeInDown
+{
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 @media (max-width: 1000px)
 {
@@ -272,5 +324,9 @@ textarea
     .name
     {
         display: none;
+    }
+    .sub-btn
+    {
+        animation: fadeInDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 }
