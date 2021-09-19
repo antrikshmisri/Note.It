@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import note from "../assets/imgs/note.svg";
 import line from "../assets/imgs/line.svg";
 
-import { auth, googleProvider } from "../firebase";
+import { auth, googleProvider, firestore } from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setUser,
@@ -17,9 +17,11 @@ import {
 
 export default function Landing() {
   const [redirect, setRedirect] = useState(null);
+  const [userNotes, setUserNotes] = useState([]);
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const history = useHistory();
+  const usersRef = firestore.collection("users");
 
   useEffect(() => {
     if (user) {
@@ -37,6 +39,24 @@ export default function Landing() {
 
   const handleSignIn = () => {
     auth.signInWithPopup(googleProvider).then((res) => {
+      const uid = res.user.uid;
+
+      usersRef.doc(uid).get()
+      .then((snapshot) => {
+        if(snapshot.exists){
+          usersRef.doc(uid).onSnapshot(doc => {
+            setUserNotes(doc.data().notes);
+          })
+        }
+        else{
+          usersRef.doc(uid).set({
+            name: res.user.displayName,
+            email: res.user.email,
+            notes: userNotes,
+          })
+        }
+      })
+
       dispatch(
         setUser({
           name: res.user.displayName,
@@ -75,7 +95,7 @@ export default function Landing() {
               </Row>
             </Container>
           </Col>
-          <Col lg={"12"} className="links">
+          <Col lg={"12"} className="links mb-2">
             <Button
               className="add-btn"
               onClick={(e) => {
