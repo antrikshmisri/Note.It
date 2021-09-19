@@ -13,6 +13,7 @@ import Note from "../components/Note";
 import { Canvas } from "../components/Canvas";
 import { CanvasProvider } from "../contexts/CanvasContext";
 
+
 const reactSwal = withReactContent(swal);
 
 export default function Home() {
@@ -71,7 +72,7 @@ export default function Home() {
               <Row>
                 <Col lg={"3"}>
                   <Button
-                    className="add-btn"
+                    className="add-btn no-anim"
                     onClick={() => {
                       setSubButtonVisibility(!subButtonVisibility);
                     }}
