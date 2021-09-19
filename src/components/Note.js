@@ -11,7 +11,7 @@ function Note(props) {
           <h1>{props.title}</h1>
         </div>
         <p className="mx-2 my-2">{props.desc}</p>
-        <Button className="edit-btn">
+        <Button className="edit-btn no-anim">
           <span>
             <FontAwesomeIcon icon="edit" size="sm" />
           </span>
