@@ -36,7 +36,7 @@ export const Canvas = () => {
             <Row>
               <Col lg={"2"}>
                 <Button className="sub-btn">
-                  <span>Edit</span>
+                  <span>Tools</span>
                 </Button>
               </Col>
               <Col lg={"2"}>
