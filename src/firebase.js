@@ -1,5 +1,7 @@
 import firebase from 'firebase'
 import 'firebase/auth'
+import 'firebase/firestore'
+import { createFirestoreInstance, firestoreReducer } from 'redux-firestore'
 
 firebase.initializeApp({
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -16,3 +18,4 @@ const auth = firebase.auth()
 const googleProvider = new firebase.auth.GoogleAuthProvider()
 
 export {auth, googleProvider}
+export const firestore = firebase.firestore()
