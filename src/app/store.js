@@ -1,9 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "../features/userSlice";
+import thunk from "redux-thunk";
+
+import rootReducer from "./rootReducer";
 
 export const store = configureStore({
-    reducer: {
-        user: userReducer,
-    },
-    devTools: true
+    reducer: rootReducer,
+    enhancers: [
+        // Add other store enhancers here...
+    ],
+    middleware: [thunk],
+    devTools: process.env.NODE_ENV !== 'production'
 });
