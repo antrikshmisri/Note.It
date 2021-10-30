@@ -10,10 +10,7 @@ import line from "../assets/imgs/line.svg";
 
 import { auth, googleProvider, firestore } from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setUser,
-  selectUser,
-} from "../features/userSlice";
+import { setUser, selectUser } from "../features/userSlice";
 
 import { setNotes, selectNotes } from "../features/noteSlice";
 

@@ -1,17 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    notes: [],
-}
+  notes: [],
+};
 
 const noteSlice = createSlice({
-    name: 'notes',
-    initialState,
-    reducers: {
-        setNotes: (state, action) => {
-            state.notes = action.payload.notes;
-        }
-    }
+  name: "notes",
+  initialState,
+  reducers: {
+    setNotes: (state, action) => {
+      state.notes = action.payload.notes;
+    },
+  },
 });
 
 export const { setNotes } = noteSlice.actions;

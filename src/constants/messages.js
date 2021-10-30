@@ -16,11 +16,11 @@ const messages = {
     html: <NoteInputs />,
   },
   nullinfo: {
-      confirmButtonText: "OK",
-      title: "Please add the title",
-      showCancelButton: false,
-      icon: "error",
-  }
+    confirmButtonText: "OK",
+    title: "Please add the title",
+    showCancelButton: false,
+    icon: "error",
+  },
 };
 
 export default messages;
