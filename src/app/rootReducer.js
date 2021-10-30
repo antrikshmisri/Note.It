@@ -1,11 +1,11 @@
-import { combineReducers } from '@reduxjs/toolkit'
+import { combineReducers } from "@reduxjs/toolkit";
 
-import userReducer from '../features/userSlice'
-import noteReducer from '../features/noteSlice'
+import userReducer from "../features/userSlice";
+import noteReducer from "../features/noteSlice";
 
 const rootReducer = combineReducers({
-    user: userReducer,
-    note: noteReducer
-})
+  user: userReducer,
+  note: noteReducer,
+});
 
-export default rootReducer
+export default rootReducer;

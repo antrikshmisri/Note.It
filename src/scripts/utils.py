@@ -1,10 +1,10 @@
 import os
+
 import numpy as np
-
-from PIL.Image import open
-from PIL import ImageOps
-
 from keras.models import load_model
+from PIL import ImageOps
+from PIL.Image import open
+
 from train import train
 
 
@@ -32,5 +32,6 @@ def predict(img_name):
     ans = model.predict(np_arr)[0]
     dig = np.argmax(ans)
     print(dig)
+
 
 predict('test.png')

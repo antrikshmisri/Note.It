@@ -10,10 +10,7 @@ import line from "../assets/imgs/line.svg";
 
 import { auth, googleProvider, firestore } from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setUser,
-  selectUser,
-} from "../features/userSlice";
+import { setUser, selectUser } from "../features/userSlice";
 
 export default function Landing() {
   const [redirect, setRedirect] = useState(null);
@@ -41,21 +38,22 @@ export default function Landing() {
     auth.signInWithPopup(googleProvider).then((res) => {
       const uid = res.user.uid;
 
-      usersRef.doc(uid).get()
-      .then((snapshot) => {
-        if(snapshot.exists){
-          usersRef.doc(uid).onSnapshot(doc => {
-            setUserNotes(doc.data().notes);
-          })
-        }
-        else{
-          usersRef.doc(uid).set({
-            name: res.user.displayName,
-            email: res.user.email,
-            notes: userNotes,
-          })
-        }
-      })
+      usersRef
+        .doc(uid)
+        .get()
+        .then((snapshot) => {
+          if (snapshot.exists) {
+            usersRef.doc(uid).onSnapshot((doc) => {
+              setUserNotes(doc.data().notes);
+            });
+          } else {
+            usersRef.doc(uid).set({
+              name: res.user.displayName,
+              email: res.user.email,
+              notes: userNotes,
+            });
+          }
+        });
 
       dispatch(
         setUser({
