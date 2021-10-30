@@ -5,6 +5,8 @@ import withReactContent from "sweetalert2-react-content";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { useSelector } from "react-redux";
+
 import notes from "../notes";
 import messages from "../constants/messages";
 import useArray from "../hooks/useArray";
@@ -13,11 +15,14 @@ import Note from "../components/Note";
 import { Canvas } from "../components/Canvas";
 import { CanvasProvider } from "../contexts/CanvasContext";
 
+import { selectNotes } from "../features/noteSlice";
 
 const reactSwal = withReactContent(swal);
 
 export default function Home() {
-  const [notesArray, setNotesArray] = useArray(notes);
+  const notesState = useSelector(selectNotes);
+  console.log(notesState)
+  const [notesArray, setNotesArray] = useArray(notesState);
   const [subButtonVisibility, setSubButtonVisibility] = useState(false);
 
   const handleTextNoteClick = (event) => {

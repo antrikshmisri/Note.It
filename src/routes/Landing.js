@@ -15,9 +15,11 @@ import {
   selectUser,
 } from "../features/userSlice";
 
+import { setNotes, selectNotes } from "../features/noteSlice";
+
 export default function Landing() {
-  const [redirect, setRedirect] = useState(null);
-  const [userNotes, setUserNotes] = useState([]);
+  const [redirect, setRedirect] = useState();
+  const [userNotes, ] = useState(useSelector(selectNotes));
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const history = useHistory();
@@ -45,7 +47,11 @@ export default function Landing() {
       .then((snapshot) => {
         if(snapshot.exists){
           usersRef.doc(uid).onSnapshot(doc => {
-            setUserNotes(doc.data().notes);
+            dispatch(
+              setNotes({
+                notes: doc.data().notes
+              })
+            );
           })
         }
         else{
