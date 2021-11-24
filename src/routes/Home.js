@@ -5,8 +5,6 @@ import withReactContent from "sweetalert2-react-content";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { useSelector } from "react-redux";
-
 import notes from "../notes";
 import messages from "../constants/messages";
 import useArray from "../hooks/useArray";
