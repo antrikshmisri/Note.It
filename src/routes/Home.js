@@ -15,12 +15,9 @@ import Note from "../components/Note";
 import { Canvas } from "../components/Canvas";
 import { CanvasProvider } from "../contexts/CanvasContext";
 
-import { selectNotes } from "../features/noteSlice";
-
 const reactSwal = withReactContent(swal);
 
 export default function Home() {
-  const notesState = useSelector(selectNotes);
   const [notesArray, setNotesArray] = useArray(notes);
   const [subButtonVisibility, setSubButtonVisibility] = useState(false);
 
