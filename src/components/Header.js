@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AiOutlineLogout } from "react-icons/ai";
 
 import { useHistory } from "react-router-dom";
 
@@ -41,11 +41,11 @@ const Header = () => {
     <div className="heading">
       <Container fluid>
         <Row>
-          <Col lg={"10"} xs={"8"}>
+          <Col lg={"10"} xs={"6"}>
             <h1 className="header">NOTE.IT</h1>
           </Col>
-          <Col lg={"2"} xs={"4"}>
-            <Container className="user-info" fluid>
+          <Col lg={"2"} xs={"6"}>
+            <Container className="user-info d-flex justify-content-end" fluid>
               <Row>
                 <Col lg={"6"} className="center name">
                   <p className="m-0 p-0">{name}</p>
@@ -54,11 +54,8 @@ const Header = () => {
                   <img src={image} className="profile-pic" alt={name} />
                 </Col>
                 <Col lg={"3"} xs={"6"}>
-                  <Button className="add-btn">
-                    <FontAwesomeIcon
-                      icon="sign-out-alt"
-                      onClick={handleSignOut}
-                    />
+                  <Button className="add-btn" onClick={handleSignOut}>
+                    <AiOutlineLogout />
                   </Button>
                 </Col>
               </Row>

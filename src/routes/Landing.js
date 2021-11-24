@@ -3,7 +3,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AiFillGoogleCircle, AiFillGithub, AiFillLinkedin, AiFillInstagram } from "react-icons/ai";
 
 import note from "../assets/imgs/note.svg";
 import line from "../assets/imgs/line.svg";
@@ -80,32 +80,32 @@ export default function Landing() {
             <h1 className="title">NOTE.IT</h1>
           </Col>
           <Col lg={"12"} className="text-center title-div">
-            <img className="svg xl" src={line} alt="note" />
+            <img className="svg note-line xl" src={line} alt="note" />
           </Col>
           <Col lg={"12"} className="center mt-5">
             <Container className="center btns">
               <Row>
                 <Col lg={"6"} className="center">
                   <Button onClick={handleSignIn}>
-                    <FontAwesomeIcon icon={["fab", "google"]} /> Sign-In
+                    <AiFillGoogleCircle /> Sign-In
                   </Button>
                 </Col>
                 <Col lg={"6"} className="center">
                   <Button>
-                    <FontAwesomeIcon icon={["fab", "github"]} /> Sign-In
+                    <AiFillGithub /> Sign-In
                   </Button>
                 </Col>
               </Row>
             </Container>
           </Col>
-          <Col lg={"12"} className="links mb-2">
+          <Col lg={"12"} className="links pb-0">
             <Button
               className="add-btn"
               onClick={(e) => {
                 goToLink("https://github.com/antrikshmisri/Keeper-ReactJS");
               }}
             >
-              <FontAwesomeIcon icon={["fab", "github"]} />
+              <AiFillGithub />
             </Button>
             <Button
               className="add-btn"
@@ -115,7 +115,7 @@ export default function Landing() {
                 );
               }}
             >
-              <FontAwesomeIcon icon={["fab", "linkedin"]} />
+              <AiFillLinkedin />
             </Button>
             <Button
               className="add-btn"
@@ -123,7 +123,7 @@ export default function Landing() {
                 goToLink("https://www.instagram.com/antrikshmisri/?hl=en");
               }}
             >
-              <FontAwesomeIcon icon={["fab", "instagram"]} />
+              <AiFillInstagram />
             </Button>
           </Col>
         </Row>

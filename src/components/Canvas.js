@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useCanvas } from "../contexts/CanvasContext";
 import TextField from "./TextField";
+import { AiFillTool, AiOutlineClear } from "react-icons/ai";
 
 export const Canvas = () => {
   const {
@@ -32,21 +33,21 @@ export const Canvas = () => {
           />
         </Col>
         <Col lg={"12"}>
-          <Container>
-            <Row>
+          <Container fluid >
+            <Row >
               <Col lg={"2"}>
-                <Button className="sub-btn">
-                  <span>Tools</span>
+                <Button className="sub-btn mb-1">
+                  <AiFillTool />
                 </Button>
               </Col>
               <Col lg={"2"}>
-                <Button className="sub-btn" onClick={clearCanvas}>
-                  <span>Clear</span>
+                <Button className="sub-btn mb-1" onClick={clearCanvas}>
+                  <AiOutlineClear />
                 </Button>
               </Col>
-              <Col lg={"6"}>
-                <Button className="sub-btn">
-                  <span>Convert To Text</span>
+              <Col lg={"8"}>
+                <Button className="sub-btn mb-1">
+                  <span>Convert To Text Note</span>
                 </Button>
               </Col>
             </Row>

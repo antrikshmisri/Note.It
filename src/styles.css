@@ -4,6 +4,30 @@
   padding: 0 0;
   font-family: "Montserrat", sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  scroll-behavior: smooth;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  display: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  transition: 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
+  background: rgba(193, 86, 75, 1);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(161, 74, 64);
+}
+
 body {
   min-height: 100vh;
   overflow-x: hidden;
@@ -21,14 +45,24 @@ body {
   filter: drop-shadow(0px 2px 10px rgba(105, 105, 105, 0.5));
 }
 .note-title {
+  overflow: auto;
+  white-space: nowrap;
   padding: 1rem 1rem;
   background-color: rgba(193, 86, 75, 1);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   border-bottom: 0;
   margin-bottom: 0.5rem;
-  border-bottom: 2px solid #f5ba14;
+  border-bottom: 2px solid rgba(105, 105, 105, 0.5);
+  border-radius: 10px;
+  text-overflow: ellipsis;
 }
+
+.note-desc {
+  white-space: pre-wrap;
+  overflow-y: auto;
+  overflow-x: auto;
+  height: 200px;
+}
+
 .note-title h1 {
   font-weight: 700;
 }
@@ -53,9 +87,21 @@ body {
 .btn-container {
   margin: 1rem 0;
   padding: 1rem 1rem;
-  max-width: 300px;
   display: flex;
   align-items: flex-end;
+}
+.links .add-btn {
+  animation: 1.5s float infinite alternate cubic-bezier(0.075, 0.82, 0.165, 1),
+    5s opacity cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform: translateX(0%);
+}
+
+.links .add-btn:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.links .add-btn:nth-child(3) {
+  animation-delay: 0.4s;
 }
 
 .add-btn,
@@ -76,13 +122,14 @@ body {
 .add-btn:hover,
 .edit-btn:hover {
   background-color: rgba(193, 86, 75, 1) !important;
-  transform: rotateZ(360deg);
+}
+.add-btn:hover {
+  border-radius: 20px !important;
 }
 .no-anim:hover {
   transform: rotateZ(0deg) !important;
 }
 .edit-btn {
-  border-bottom-right-radius: 10px !important;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -153,6 +200,10 @@ h1.header {
   filter: drop-shadow(1px 1px 10px rgba(105, 105, 105, 0.5));
 }
 
+.svg.note-line {
+  animation: stroke 1s cubic-bezier(0.075, 0.82, 0.165, 1) infinite alternate;
+}
+
 .svg.xl {
   min-width: 250px;
 }
@@ -200,8 +251,8 @@ img.profile-pic {
   align-items: center;
 }
 
-.debug-box {
-  border: 2px solid red;
+.debug {
+  border: 2px solid red !important;
 }
 form {
   min-width: 100%;
@@ -257,10 +308,11 @@ textarea {
   align-items: center;
 }
 .canvas {
-  border: 8px solid rgba(193, 86, 75, 0.8) !important;
+  border: 3px solid rgba(193, 86, 75, 0.8) !important;
   border-radius: 10px;
   width: 400px;
   height: 400px;
+  filter: drop-shadow(1px 1px 5px rgba(105, 105, 105, 0.5));
 }
 @keyframes fadeIn {
   0% {
@@ -282,6 +334,24 @@ textarea {
     opacity: 1;
   }
 }
+
+@keyframes float {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+@keyframes stroke {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
 @media (max-width: 1000px) {
   .btn-container {
     display: flex;
@@ -294,7 +364,7 @@ textarea {
   .name {
     display: none;
   }
-  .sub-btn {
+  /* .sub-btn {
     animation: fadeInDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
+  } */
 }

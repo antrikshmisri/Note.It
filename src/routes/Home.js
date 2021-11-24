@@ -5,8 +5,6 @@ import withReactContent from "sweetalert2-react-content";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { useSelector } from "react-redux";
-
 import notes from "../notes";
 import messages from "../constants/messages";
 import useArray from "../hooks/useArray";
@@ -15,14 +13,10 @@ import Note from "../components/Note";
 import { Canvas } from "../components/Canvas";
 import { CanvasProvider } from "../contexts/CanvasContext";
 
-import { selectNotes } from "../features/noteSlice";
-
 const reactSwal = withReactContent(swal);
 
 export default function Home() {
-  const notesState = useSelector(selectNotes);
-  console.log(notesState)
-  const [notesArray, setNotesArray] = useArray(notesState);
+  const [notesArray, setNotesArray] = useArray(notes);
   const [subButtonVisibility, setSubButtonVisibility] = useState(false);
 
   const handleTextNoteClick = (event) => {
@@ -70,12 +64,12 @@ export default function Home() {
       <Container fluid>
         <Row>
           {notesArray.map((note) => (
-            <Note key={note.key} title={note.title} desc={note.content} />
+            <Note key={note.key} title={note.title} desc={note.desc} />
           ))}
-          <Col lg={"4"} className="btn-container p-0">
+          <Col lg={"4"} className="btn-container">
             <Container className="d-flex align-items-center" fluid>
               <Row>
-                <Col lg={"3"}>
+                <Col xs={"3"}>
                   <Button
                     className="add-btn no-anim"
                     onClick={() => {
@@ -86,11 +80,11 @@ export default function Home() {
                   </Button>
                 </Col>
                 {subButtonVisibility ? (
-                  <Col lg={"9"} className="d-flex align-items-center">
-                    <Button className="sub-btn" onClick={handleTextNoteClick}>
+                  <Col xs={"9"} className="d-flex align-items-center">
+                    <Button className="sub-btn mx-1" onClick={handleTextNoteClick}>
                       <span>Text</span>
                     </Button>
-                    <Button className="sub-btn" onClick={handleDoodleNoteClick}>
+                    <Button className="sub-btn mx-1" onClick={handleDoodleNoteClick}>
                       <span>Doodle</span>
                     </Button>
                   </Col>
